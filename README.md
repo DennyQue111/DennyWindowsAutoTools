@@ -34,6 +34,38 @@
    python main.py
    ```
 
+## 打包成EXE文件
+
+如果你想将应用程序打包成独立的exe文件，可以使用以下方法：
+
+### 方法一：简单打包
+1. **双击运行** `build_exe.bat`
+2. 等待打包完成
+3. 在 `dist/` 文件夹中找到 `DennyAutoTools.exe`
+
+### 方法二：高级打包（推荐）
+1. **双击运行** `build_exe_advanced.bat`
+2. 使用优化的配置进行打包
+3. 生成更小、更优化的exe文件
+
+### 手动打包命令
+```bash
+# 安装PyInstaller
+pip install pyinstaller
+
+# 简单打包
+pyinstaller --onefile --windowed --name="DennyAutoTools" main.py
+
+# 或使用配置文件
+pyinstaller main.spec
+```
+
+### 打包后的优势
+- ✅ **独立运行**：无需安装Python环境
+- ✅ **单文件**：所有依赖打包在一个exe中
+- ✅ **便于分享**：可以直接发送给其他人使用
+- ✅ **无控制台**：运行时不显示命令行窗口
+
 ## 使用说明
 
 ### 启动应用程序
@@ -54,8 +86,15 @@
 
 ```
 DennyWindowsAutoTools/
-├── main.py              # 主应用程序文件
-├── requirements.txt     # Python依赖包列表
+├── main.py                 # 主应用程序文件
+├── main.spec              # PyInstaller配置文件
+├── requirements.txt       # Python依赖包列表
+├── install.bat           # 安装脚本
+├── run.bat              # 运行脚本
+├── build_exe.bat        # 简单打包脚本
+├── build_exe_advanced.bat # 高级打包脚本
+├── dist/                # 打包输出目录（生成后）
+│   └── DennyAutoTools.exe # 生成的可执行文件
 └── README.md           # 项目说明文档
 ```
 
