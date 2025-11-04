@@ -18,7 +18,7 @@ echo.
 
 REM Install dependencies
 echo Installing dependencies...
-"%PYTHON_EXE%" -m pip install PySide6 pyinstaller
+"%PYTHON_EXE%" -m pip install PySide6 pyinstaller requests urllib3
 echo.
 
 REM Clean old files
@@ -26,10 +26,13 @@ echo Cleaning old build files...
 if exist "build" rmdir /s /q "build"
 if exist "dist" rmdir /s /q "dist"
 if exist "*.spec" del "*.spec"
+if exist "test_download.py" del "test_download.py"
+if exist "test_download.json" del "test_download.json"
+if exist "demo.html" del "demo.html"
 
 REM Build exe
 echo Building executable...
-"%PYTHON_EXE%" -m PyInstaller --onefile --windowed --name=DennyAutoTools --collect-all=PySide6 main.py
+"%PYTHON_EXE%" -m PyInstaller --onefile --windowed --name=DennyAutoTools --collect-all=PySide6 --hidden-import=requests --hidden-import=urllib3 --hidden-import=urllib3.util.retry main.py
 
 REM Check result
 if exist "dist\DennyAutoTools.exe" (
